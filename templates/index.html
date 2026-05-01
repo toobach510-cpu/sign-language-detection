@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Recognition</title>
+    <style>
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live Camera Feed with Hand Gesture Recognition</h1>
+    <img src="{{ url_for('video') }}" width="640" height="480" />
+    <div>
+        <button onclick="toggleCapture()">Start/Stop Gesture Capture</button>
+    </div>
+
+    <script>
+        function toggleCapture() {
+            fetch('/toggle_capture', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Capture Toggled:', data);
+                });
+        }
+    </script>
+</body>
+</html>
